@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interactive Reel Story</title>
-
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
 <style>
 /* 🌌 Base Layout */
 body {
@@ -204,13 +206,27 @@ reels.forEach(reel => {
       updateProgress();
       animateSceneText(scene[currentScene])
     } else {
-      updateProgress();
       alert("✨ The story ends here — for now.");
+  updateProgress();
+
+  // ✨ Final reveal of all scenes
+  gsap.to(scenes, {
+    opacity: 1,
+    duration: 1.5,
+    ease: "power2.out"
+  });
+  gsap.to(".story-text span", {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    stagger: 0.02,
+    ease: "power1.out"
+  });
+      }
+      
     }
   });
 });
-
-updateProgress();
 </script>
 </body>
 </html>
