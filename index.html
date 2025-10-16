@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Interactive Reel Story</title>
-  
+
+<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  
+
 <style>
-/* 🌌 Base Layout */
+/* 🌌 Base */
 body {
   background: radial-gradient(circle at top, #101820, #000);
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
   overflow-x: hidden;
   margin: 0;
@@ -22,24 +23,25 @@ body {
 /* 🎭 Scenes */
 .scene {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
+  transform: scale(0.9) translateY(40px);
   max-width: 600px;
   margin: 80px auto;
   padding: 0 20px;
+  transition: opacity 0.6s ease;
 }
 
 .scene.active {
   opacity: 1;
-  transform: translateY(0);
 }
-  
-.story-text {
-  opacity: 0;
-}
-  
 
-/* ✨ Triggers */
+/* 📝 Animated Text */
+.story-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ✨ Trigger Buttons */
 .trigger {
   display: inline-block;
   margin-top: 20px;
@@ -47,18 +49,17 @@ body {
   cursor: pointer;
   animation: glow 1.5s infinite alternate;
 }
-
 @keyframes glow {
   from { text-shadow: 0 0 5px #fff; }
   to { text-shadow: 0 0 20px #0ff; color: #0ff; }
 }
 
-/* 🎥 Reels Overlay */
+/* 🎥 Reel Overlay */
 .reel {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,21 +68,18 @@ body {
   transition: opacity 0.8s ease;
   z-index: 10;
 }
-
 .reel.active {
   opacity: 1;
   pointer-events: auto;
 }
-
 .reel-frame {
   width: 90%;
   max-width: 400px;
   aspect-ratio: 4 / 5;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
-
 .reel iframe {
   width: 100%;
   height: 100%;
@@ -97,12 +95,11 @@ body {
   width: 80%;
   max-width: 400px;
   height: 6px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   overflow: hidden;
   z-index: 20;
 }
-
 .progress-bar {
   height: 100%;
   width: 0%;
@@ -120,68 +117,306 @@ body {
 </head>
 
 <body>
-
-<!-- 🔘 Progress Bar -->
+<!-- Progress -->
 <div class="progress-container">
   <div class="progress-bar" id="progress"></div>
 </div>
 
-<!-- 🎬 Story Scenes -->
+<!-- Scenes -->
 <div class="scene active" id="scene1">
-  <p>🌙 It all started with a spark in the dark. Something waiting to be discovered.</p>
+  <p class="story-text">
+    🌙 It all started with a spark in the dark. Something waiting to be discovered.
+  </p>
   <span class="trigger" data-reel="reel1">✨</span>
 </div>
 
 <div class="scene" id="scene2">
-  <p>🔮 The clue led to a vision — something that shimmered between worlds.</p>
+  <p class="story-text">
+    🔮 What's so special about October?????🤔.
+  </p>
   <span class="trigger" data-reel="reel2">🗝️</span>
 </div>
 
 <div class="scene" id="scene3">
-  <p>🌅 And at dawn, everything connected — the story was finally complete.</p>
+  <p class="story-text">
+    🌅 <And now everything's connected — the story is finally complete.
+  </p>
   <span class="trigger" data-reel="reel3">🌙</span>
 </div>
 
-<!-- 🎥 Reels -->
+<div class="scene" id="scene4">
+  <p class="story-text" dir ="rtl">
+    🔮 زمستون به اسفندش مینازه پاییز هم به مهرش
+    دلیل قشنگی پاییز — تولدت مبارک
+  </p>
+  <span class="trigger" data-reel="reel4">🗝️</span>
+</div>
+
+<div class="scene" id="scene5">
+  <p class="story-text" dir ="rtl">
+    🌙 این برای توعه مهر‌هاهی جان
+  </p>
+  <span class="trigger" data-reel="reel5">✨</span>
+</div>   
+
+<div class="scene" id="scene6">
+  <p class="story-text" dir ="rtl">
+    🔮 🫶🫶دیگه وقتشه شمع رو فوت کنی. بهترین‌ها رو برات آرزو دارم
+  </p>
+  <span class="trigger" data-reel="reel6">🗝️</span>
+</div>
+
+<div class="scene" id="scene7">
+  <p class="story-text">
+    🌙 There's someone who's working so hard to achieve great dreams/goals, success is near. That person's name starts with?.....
+  </p>
+  <span class="trigger" data-reel="reel7">✨</span>
+</div>
+
+<div class="scene" id="scene8">
+  <p class="story-text">
+    🌙 ✨✨✨✨✨.
+  </p>
+  <span class="trigger" data-reel="reel8">✨</span>
+</div>   
+
+<div class="scene" id="scene9">
+  <p class="story-text">
+    🌙 .....🍂🍁🍂🍁🍂🍁🍂
+  </p>
+  <span class="trigger" data-reel="reel9">✨</span>
+</div>   
+
+
+<div class="scene" id="scene10">
+  <p class="story-text">
+    🌙 Happy birthday 🎁🎂.
+  </p>
+  <span class="trigger" data-reel="reel10">✨</span>
+</div>   
+
+<!-- Reels -->
 <div class="reel" id="reel1">
   <div class="reel-frame">
-    <iframe src="https://www.instagram.com/reel/DM1w2YCTG_1/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+    <iframe   src="https://www.instagram.com/reel/DLxj_RCgY_l/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+      sandbox="allow-scripts allow-same-origin"
+    ></iframe>
   </div>
 </div>
 
 <div class="reel" id="reel2">
   <div class="reel-frame">
-    <iframe src="https://www.instagram.com/reel/DH5OoritVRo/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+    <iframe
+      src="https://www.instagram.com/reel/Czsx1ONMPk4/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
   </div>
 </div>
 
 <div class="reel" id="reel3">
   <div class="reel-frame">
-    <iframe src="https://www.instagram.com/reel/DMqAcUwqrbZ/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+    <iframe
+      src="https://www.instagram.com/reel/DPz5FtaEkMD/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
   </div>
 </div>
 
-<!-- ⚙️ Logic -->
+<div class="reel" id="reel4">
+  <div class="reel-frame">
+    <iframe
+      src="https://www.instagram.com/reel/DO1XN_qjS60/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>
+
+<div class="reel" id="reel5">
+  <div class="reel-frame">
+    <iframe     src="https://www.instagram.com/reel/DNK69kBgfnS/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>
+
+<div class="reel" id="reel6">
+  <div class="reel-frame">
+    <iframe
+      src="https://www.instagram.com/reel/DPnoh5nkhQc/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>
+
+<div class="reel" id="reel7">
+  <div class="reel-frame">
+    <iframe
+      src="https://www.instagram.com/reel/DJszW83iewg/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>
+
+<div class="reel" id="reel8">
+  <div class="reel-frame">
+    <iframe
+      src="https://www.instagram.com/reel/DM1w2YCTG_1/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>
+
+<div class="reel" id="reel9">
+  <div class="reel-frame">
+    <iframe
+      src="https://www.instagram.com/reel/DLWluGItVFm/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>
+
+<div class="reel" id="reel10">
+  <div class="reel-frame">
+    <iframe
+      src="https://www.instagram.com/reel/DJXyuL5T-ui/embed"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
+  </div>
+</div>
+
+
+<!-- ⚙️ JS Logic -->
 <script>
-const triggers = document.querySelectorAll('.trigger');
-const reels = document.querySelectorAll('.reel');
-const scenes = document.querySelectorAll('.scene');
-const progress = document.getElementById('progress');
+const triggers = document.querySelectorAll(".trigger");
+const reels = document.querySelectorAll(".reel");
+const scenes = document.querySelectorAll(".scene");
+const progress = document.getElementById("progress");
 let currentScene = 0;
 
-  // Split text into spans for animation
-document.querySelectorAll('.story-text').forEach(p => {
-  const words = p.textContent.split(' ');
-  p.innerHTML = words.map(word => `<span>${word}</span>`).join(' ');
+// Split words for text animation
+document.querySelectorAll(".story-text").forEach(p => {
+  const words = p.textContent.trim().split(" ");
+  p.innerHTML = words.map(word => `<span>${word}</span>`).join(" ");
 });
 
-// Animate each scene when active
+// Animate text reveal
 function animateSceneText(scene) {
-  const words = scene.querySelectorAll('span');
-  gsap.fromTo(words, 
-    { opacity: 0, y: 20 }, 
-    { opacity: 1, y: 0, stagger: 0.05, duration: 0.6, ease: "power2.out" }
+  const words = scene.querySelectorAll("span");
+  gsap.fromTo(
+    words,
+    { opacity: 0, y: 20 },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.05,
+      duration: 0.6,
+      ease: "power2.out"
+    }
   );
+}
+
+// Camera-style scene entrance animation
+function animateCamera(scene) {
+  gsap.fromTo(
+    scene,
+    { opacity: 0, scale: 1.1, rotateX: 10 },
+    { opacity: 1, scale: 1, rotateX: 0, duration: 1, ease: "power3.out" }
+  );
+}
+
+// Progress bar
+function updateProgress() {
+  const percent = ((currentScene) / (scenes.length)) * 100;
+  progress.style.width = percent + "%";
+}
+
+// Trigger click → open reel
+triggers.forEach(trigger => {
+  trigger.addEventListener("click", () => {
+    const reelId = trigger.dataset.reel;
+    document.getElementById(reelId).classList.add("active");
+  });
+});
+
+// Close reel → go to next scene with animation
+reels.forEach(reel => {
+  reel.addEventListener("click", () => {
+    reel.classList.remove("active");
+
+    // Hide current scene
+    const current = scenes[currentScene];
+    current.classList.remove("active");
+
+    // Fade out its text smoothly
+    gsap.to(current.querySelectorAll(".story-text span"), {
+      opacity: 0.09,
+      duration: 0.8,
+      ease: "power3.out"
+    });
+    
+    gsap.to(current.querySelectorAll(".trigger "), {
+      opacity: 0.07,
+      duration: 0.8,
+      ease: "power3.out"
+    });
+
+    currentScene++;
+
+    if (currentScene < scenes.length) {
+      const next = scenes[currentScene];
+      next.classList.add("active");
+      animateCamera(next);
+      animateSceneText(next);
+      updateProgress();
+    } else {
+      // Final reveal — bring all texts back
+      scenes.forEach(scene => {
+        gsap.to(scene.querySelectorAll(".story-text span"), {
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out"
+        });
+gsap.to(scene.querySeectorAll(".trigger"), {
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out"
+        });        
+      });
+      updateProgress();
+      alert("✨ The story ends here — for now. Hope you liked it :)))");
+    }
+  });
+});
+
+// Init first scene
+alert("Tap/click on the icon below the text to reveal a message. Tap anywhere on the screen to go to the next scene.")
+animateSceneText(scenes[0]);
+animateCamera(scenes[0]);
+updateProgress();
+</script>
+</body>
+</html>
 }
 
 function updateProgress() {
