@@ -139,7 +139,7 @@ body {
 
 <div class="scene" id="scene3">
   <p class="story-text">
-    🌅 <And now everything's connected — the story is finally complete.
+    🌅 And now everything's connected — the story is finally complete.
   </p>
   <span class="trigger" data-reel="reel3">🌙</span>
 </div>
@@ -414,52 +414,6 @@ alert("Tap/click on the icon below the text to reveal a message. Tap anywhere on
 animateSceneText(scenes[0]);
 animateCamera(scenes[0]);
 updateProgress();
-</script>
-</body>
-</html>
-}
-
-function updateProgress() {
-  const percent = ((currentScene) / (scenes.length)) * 100;
-  progress.style.width = percent + '%';
-}
-
-triggers.forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    const reelId = trigger.dataset.reel;
-    document.getElementById(reelId).classList.add('active');
-  });
-});
-
-reels.forEach(reel => {
-  reel.addEventListener('click', () => {
-    reel.classList.remove('active');
-    scenes[currentScene].classList.remove('active');
-    currentScene++;
-    if (currentScene < scenes.length) {
-      scenes[currentScene].classList.add('active');
-      updateProgress();
-      animateSceneText(scene[currentScene])
-    } else {
-      alert("✨ The story ends here — for now.");
-  updateProgress();
-
-  // ✨ Final reveal of all scenes
-  gsap.to(scenes, {
-    opacity: 1,
-    duration: 1.5,
-    ease: "power2.out"
-  });
-  gsap.to(".story-text span", {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    stagger: 0.02,
-    ease: "power1.out"
-  });
-    }
-  });
-});
 </script>
 </body>
 </html>
