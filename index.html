@@ -392,12 +392,12 @@ reels.forEach(reel => {
     } else {
       // Final reveal — bring all texts back
       scenes.forEach(scene => {
-        gsap.to(scene.querySelectorAll(".story-text span"), {
+  gsap.to(scene.querySelectorAll(".story-text span"), {
           opacity: 1,
           duration: 1.2,
           ease: "power2.out"
         });
-        gsap.to(scene.querySeectorAll(".trigger"), {
+  gsap.to(scene.querySeectorAll(".trigger"), {
           opacity: 1,
           duration: 1.2,
           ease: "power2.out"
